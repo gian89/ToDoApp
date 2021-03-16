@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import {StyleSheet, Text, View, Image, TextInput, Pressable,Alert} from "react-native";
-
-import {appLogin} from '../../src/appFunction'
+import React, {useState} from "react";
+import {StyleSheet, Text, View, Image, TextInput, Pressable} from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
+
+import {alertMessage} from "../../src/utilities";
+import {appLogin} from '../../src/appFunction'
 
 const Login = ({navigation}) => {
     const [email, setEmail] = useState("");
@@ -11,14 +12,7 @@ const Login = ({navigation}) => {
 
     const login = () => {
         if (email === "" || password === "") {
-            Alert.alert(
-                "Errore",
-                "Email e Password obbligatori ",
-                [
-                    {text: "OK", onPress: () => console.log("OK Pressed")}
-                ],
-                {cancelable: true}
-            );
+            alertMessage("Errore", "Email e Password obbligatori")
             return;
         }
         setShowSpinner(true);
@@ -30,19 +24,12 @@ const Login = ({navigation}) => {
             .then(() => {
                 setShowSpinner(false);
             })
-            .catch(() => {
+            .catch((error) => {
+                console.log("errore: " + JSON.stringify(error));
                 setShowSpinner(false);
-                Alert.alert(
-                    "Errore",
-                    "Email o Password non validi",
-                    [
-                        {text: "OK", onPress: () => console.log("OK Pressed")}
-                    ],
-                    {cancelable: true}
-                );
+                alertMessage(`Errore ${error.status}`, error.message.message);
             })
     }
-
     return (
         <View style={styles.container}>
             <Spinner
@@ -50,7 +37,7 @@ const Login = ({navigation}) => {
                 textContent={'Loading...'}
                 textStyle={styles.spinnerTextStyle}
             />
-            <Image style={styles.image} source={require("../../assets/a2y-logo.png")} />
+            <Image style={styles.image} source={require("../../assets/a2y-logo.png")}/>
 
             <View style={styles.inputView}>
                 <TextInput
@@ -71,7 +58,7 @@ const Login = ({navigation}) => {
                 />
             </View>
 
-            <Pressable onPress={()=>navigation.navigate("SignUp")}>
+            <Pressable onPress={() => navigation.navigate("SignUp")}>
                 <Text style={styles.newUserButton}>Non hai un account? Registrati</Text>
             </Pressable>
 

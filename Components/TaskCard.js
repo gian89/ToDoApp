@@ -61,7 +61,10 @@ const TaskCard = (props) => {
                 .then(() => {
                     setShowSpinner(false)
                     props.navigation.navigate('ToDo');
-                }).catch(() => {
+                }).catch((error) => {
+                if (error.status === "Sessione scaduta") {
+                    return;
+                }
                 Alert.alert(
                     "Errore",
                     "L'operazione non è andata a buon fine",
@@ -95,8 +98,11 @@ const TaskCard = (props) => {
             .then(() => {
                 setShowSpinner(false)
             })
-            .catch(() => {
+            .catch((error) => {
                 setShowSpinner(false)
+                if (error.status === "Sessione scaduta") {
+                    return;
+                }
                 Alert.alert(
                     "Errore",
                     "L'operazione non è andata a buon fine",

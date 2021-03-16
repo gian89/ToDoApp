@@ -1,6 +1,6 @@
 import {baseUrl} from './config.js'
 
-//Api per la gestione delgi utenti
+//Api per la gestione degli utenti
 
 const login = (body) => {
     let url = `/login`;
@@ -73,6 +73,15 @@ const updateTask = (body) => {
 const apiAppToYouCaller = (url, method = 'GET', body = "") => {
     return new Promise(async (resolve, reject) => {
         try {
+            setTimeout(() => {
+                reject({
+                    status: 408,
+                    message: {
+                        "status": 408,
+                        "message": "Request Timeout"
+                    }
+                })
+            }, 4000)
             let response = await fetch(baseUrl + url,
                 {
                     method: method,
@@ -83,11 +92,20 @@ const apiAppToYouCaller = (url, method = 'GET', body = "") => {
                     body: body
                 }
             );
+            if (response.status === 500) {
+                reject({
+                    status: response.status,
+                    message: {
+                        status: response.status,
+                        message: "Server connection error"
+                    }
+                })
+            }
             if (response.status !== 200) {
                 let errorJson = await response.json();
                 reject({
                     status: response.status,
-                    response: errorJson
+                    message: errorJson
                 })
             }
             let responseJson = await response.json();

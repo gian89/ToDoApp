@@ -41,3 +41,16 @@ B
 src/appFunction.js,2\a\2a6e68c2ed8926858714e0ced82229bc138ee93b
 8
 app.json,6\5\65596286f14dbaba6a5081a2edaae69700cc3c3b
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+H
+.expo-shared/assets.json,1\9\191cfe8c0c0bbcad6e092d2a84a5d0c258b09de6
+?
+babel.config.js,7\7\775bd43a34022cef87b6af825cbd551f29473f73
+K
+.idea/dictionaries/Gian.xml,6\2\6282ccfec13771be40b335b2ae4f05a356b2d262
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+A
+package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47

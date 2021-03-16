@@ -5,6 +5,7 @@ import {reduxLogin, reduxLogout} from "../Redux/Slice/authSlice"
 import {setTasks} from "../Redux/Slice/tasksSlice"
 
 import store from "./../Redux/Store/store";
+import {alertMessage} from "./utilities";
 
 export const appLogin = async (body) => {
     return new Promise(async (resolve, reject) => {
@@ -15,7 +16,6 @@ export const appLogin = async (body) => {
             await storeData("user", response.user)
             await onStartUp();
             resolve();
-
         } catch (err) {
             console.log(JSON.stringify(err));
             reject(err);
@@ -50,9 +50,11 @@ const verifyUserApp = () => {
             let refreshToken = await getData("refreshToken");
             if(accessToken === null || accessToken === ""){
                 reject("No User")
+                return;
             }
             let response = await AppApi.verifyUser(accessToken, refreshToken)
             if (response.accessToken !== "valid") {
+                // L' access Token era scaduto ma è stato rinnovato tramite il refresh Token
                 await storeData("accessToken", response.accessToken);
             }
             resolve()
@@ -60,7 +62,15 @@ const verifyUserApp = () => {
             await storeData("accessToken", "")
             await storeData("refreshToken", "")
             await store.dispatch(reduxLogout())
-            reject("Sessione Scaduta")
+            let error = {
+                status: "Sessione scaduta",
+                message: {
+                    status: "Sessione scaduta",
+                    message: "Effettuare il login nuovamente"
+                }
+            }
+            alertMessage(error.status, error.message.message);
+            reject(error)
         }
     })
 }

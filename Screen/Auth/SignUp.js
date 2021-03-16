@@ -5,6 +5,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 
 import {appSignup} from '../../src/appFunction'
 ;
+import {alertMessage} from "../../src/utilities";
 
 const SignUp = ({navigation}) => {
     const [email, setEmail] = useState("");
@@ -42,15 +43,8 @@ const SignUp = ({navigation}) => {
                 );
             })
             .catch((error) => {
-                if (error.status === 404) {
-                    Alert.alert(
-                        "Errore",
-                        error.response.type,
-                        [
-                            {text: "OK", onPress: () => console.log("OK Pressed")}
-                        ],
-                        {cancelable: true}
-                    );
+                if (error.status === 409) {
+                    alertMessage(`Errore ${error.status}`, error.message.message);
                 }
                 setShowSpinner(false);
             })
