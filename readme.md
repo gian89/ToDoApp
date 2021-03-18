@@ -22,7 +22,7 @@
 ## What does it do
 
 In this App you can find a Todo Manager with Authentication and User Management <br>
-used technologies <br>
+###used technologies <br>
 - React Native Navigation 5.x
 - Redux Toolkit
 
