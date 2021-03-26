@@ -56,3 +56,5 @@ A
 package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
 @
 src/utilities.js,e\d\edb657de46e05677d6631afb719c46ca07c94e2c
+9
+	readme.md,2\7\275d783e298228506068436512433d343feb52aa

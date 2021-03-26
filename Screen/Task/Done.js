@@ -14,7 +14,7 @@ const Done = () => {
 
     useEffect(() => {
         let filteredTasks = tasks.filter(item => item.status === "done");
-        console.log("Filtered tasks: " + JSON.stringify(filteredTasks));
+        // console.log("Filtered tasks: " + JSON.stringify(filteredTasks));
         setToDoTasks(filteredTasks);
     }, [tasks]);
 

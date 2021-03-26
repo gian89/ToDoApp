@@ -62,6 +62,8 @@ const TaskCard = (props) => {
                     setShowSpinner(false)
                     props.navigation.navigate('ToDo');
                 }).catch((error) => {
+                setShowSpinner(false)
+                console.log("Errore ritorno chiamata" + JSON.stringify(error));
                 if (error.status === "Sessione scaduta") {
                     return;
                 }

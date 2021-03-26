@@ -25,6 +25,7 @@ In this App you can find a Todo Manager with Authentication and User Management 
 ### used technologies <br>
 - React Native Navigation 5.x
 - Redux Toolkit
+- AsyncStorage
 
 
 
