@@ -32,4 +32,4 @@ In this App you can find a Todo Manager with Authentication and User Management 
 If you want to use the app directly you can download the  node server from:
 [NodeJwtAndToDoServer](https://github.com/gian89/NodeJwtAndToDoServer)
 
-Then go to src/config.js and change the base url with your local Ip
+Then go to [config.js](src/config.js) and change the base url with your local Ip
